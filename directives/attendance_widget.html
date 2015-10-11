@@ -1,0 +1,25 @@
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">Attendance</h3>
+    </div>
+    <div class="panel-body" ng-show="attendance.data.length == 0">
+        <div class="alert alert-warning" role="alert">You have not attended any events.</div>
+    </div>
+    <div class="panel-body" id="attendance-widget-body" ng-hide="attendance.data.length == 0">
+        <table class="table table-striped table-responsive">
+            <tbody>
+                <tr>
+                    <th>Event</th>
+                    <th>Type</th>
+                    <th>Date</th>
+                </tr>
+                <tr dir-paginate="event in (attendance.data | orderBy: '-meeting_date' | limitTo: 100) | itemsPerPage: 10">
+                    <td>{{event.committee_name}}</td>
+                    <td>Committee Meeting</td>
+                    <td>{{event.meeting_date | date:'MMMM dd, yyyy'}}</td>
+                </tr>
+            </tbody>
+        </table>
+        <dir-pagination-controls></dir-pagination-controls>
+    </div>
+</div>

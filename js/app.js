@@ -1,0 +1,303 @@
+(function() {
+    // Angular app
+    var app = angular.module("evals", ['angularUtils.directives.dirPagination']);
+
+    var webauthUser = null;
+    var memberInfo = null;
+
+    /*
+    Services
+     */
+
+    // EvalsAPI - service for making Ajax requests to the EvalsAPI
+    app.factory("EvalsAPI", ["$http", function($http){
+        // API base URL
+        var apiUrl = "https://get-click.com/evalsapi/";
+
+        // ajaxSuccess() - fires appropriate AJAX callback based on response status
+        var ajaxSuccess = function (cbPass, cbFail) {
+            return function (resp) {
+                console.log(resp);
+                cbPass(resp);
+            };
+        };
+
+        // ajaxError() - handle AJAX errors
+        var ajaxError = function (e) {
+            console.error(e);
+        };
+
+        // Service object
+        return {
+            getMemberInfo: function (username, pass, fail) {
+                $http.get(apiUrl + "getMemberInfo.php?user=" + username).success(ajaxSuccess(pass, fail)).error(ajaxError);
+            },
+            getQueue: function (username, pass, fail) {
+                $http.get(apiUrl + "getQueue.php?user=" + username).success(ajaxSuccess(pass, fail)).error(ajaxError);
+            },
+            getQueuePosition: function (username, pass, fail) {
+                $http.get(apiUrl + "getQueuePosition.php?user=" + username).success(ajaxSuccess(pass, fail)).error(ajaxError);
+            },
+            getRoom: function (username, pass, fail) {
+                $http.get(apiUrl + "getRoom.php?user=" + username).success(ajaxSuccess(pass, fail)).error(ajaxError);
+            },
+            getMajorProjects: function (username, pass, fail) {
+                $http.get(apiUrl + "getMajorProjects.php?user=" + username).success(ajaxSuccess(pass, fail)).error(ajaxError);
+            },
+            getSpringEvals: function (username, pass, fail) {
+                $http.get(apiUrl + "getSpringEvals.php?user=" + username).success(ajaxSuccess(pass, fail)).error(ajaxError);
+            },
+            getFreshmanEvals: function (username, pass, fail) {
+                $http.get(apiUrl + "getFreshmanEvals.php?user=" + username).success(ajaxSuccess(pass, fail)).error(ajaxError);
+            },
+            getConditionals: function (username, pass, fail) {
+                $http.get(apiUrl + "getConditionals.php?user=" + username).success(ajaxSuccess(pass, fail)).error(ajaxError);
+            },
+            getAttendance: function (username, pass, fail) {
+                $http.get(apiUrl + "getAttendance.php?user=" + username).success(ajaxSuccess(pass, fail)).error(ajaxError);
+            },
+            getHouseMeetings: function (username, pass, fail) {
+                $http.get(apiUrl + "getHouseMeetings.php?user=" + username).success(ajaxSuccess(pass, fail)).error(ajaxError);
+            }
+        };
+    }]);
+
+    /*
+    Controllers
+     */
+
+    app.controller("MemberInfoController", ["$scope", "EvalsAPI", function($scope, EvalsAPI){
+        // Hardcoded for now
+        // TODO: Webauth integration in getMemberInfo.php
+        webauthUser = 'smirabito';
+
+        var HeaderCtrl = this;
+
+        if(memberInfo == null){
+            EvalsAPI.getMemberInfo(
+                webauthUser,
+                function(data){
+                    console.log(data);
+                    HeaderCtrl.data = data;
+                    memberInfo = data;
+                },
+                false
+            );
+        } else {
+            HeaderCtrl.data = memberInfo;
+        }
+    }]);
+
+    /*
+     Filters
+     */
+
+    app.filter('capitalize', function() {
+        return function(input) {
+            return (!!input) ? input.charAt(0).toUpperCase() + input.substr(1).toLowerCase() : '';
+        }
+    });
+
+    /*
+     Directives
+     */
+
+    app.directive('attendanceWidget', function(){
+        return {
+            restrict: 'E',
+            templateUrl: 'directives/attendance_widget.html',
+            controller: ["$scope", "EvalsAPI", function($scope, EvalsAPI){
+                var AttendanceCtrl = this;
+                this.noData = true;
+
+                EvalsAPI.getAttendance(
+                    webauthUser,
+                    function(data){
+                        console.log(data);
+                        AttendanceCtrl.data = data;
+
+                        if(AttendanceCtrl.data.length != 0){
+                            AttendanceCtrl.noData = false;
+                        }
+                    },
+                    false
+                );
+            }],
+            controllerAs: 'attendance'
+        };
+    });
+
+    app.directive('conditionalsWidget', function(){
+        return {
+            restrict: 'E',
+            templateUrl: 'directives/conditionals_widget.html',
+            controller: ["$scope", "EvalsAPI", function($scope, EvalsAPI){
+                var ConditionalsCtrl = this;
+
+                this.noData = true;
+
+                EvalsAPI.getConditionals(
+                    webauthUser,
+                    function(data){
+                        console.log(data);
+                        ConditionalsCtrl.data = data;
+
+                        if(ConditionalsCtrl.data.length != 0){
+                            ConditionalsCtrl.noData = false;
+                        }
+                    },
+                    false
+                );
+            }],
+            controllerAs: 'conditionals'
+        };
+    });
+
+    app.directive('evaluationsWidget', function(){
+        return {
+            restrict: 'E',
+            templateUrl: 'directives/evaluations_widget.html',
+            controller: ["$scope", "EvalsAPI", function($scope, EvalsAPI){
+                EvaluationsCtrl = this;
+                this.isFreshmanEvals = false;
+                this.house_meetings_missed = 0;
+
+                if(memberInfo == null){
+                    EvalsAPI.getMemberInfo(
+                        webauthUser,
+                        function(data){
+                            console.log(data);
+                            memberInfo = data;
+                        },
+                        false
+                    );
+                }
+
+                EvalsAPI.getHouseMeetings(
+                    webauthUser,
+                    function(data){
+                        console.log(data);
+
+                        data.forEach(function(meeting){
+                            console.log(meeting);
+                            if(!meeting.present){
+                                EvaluationsCtrl.house_meetings_missed++
+                            }
+                        });
+                    },
+                    false
+                );
+
+                EvalsAPI.getFreshmanEvals(
+                    webauthUser,
+                    function(data){
+                        console.log(data);
+
+                        if(data.length == 0){
+                            EvalsAPI.getSpringEvals(
+                                webauthUser,
+                                function(data) {
+                                    console.log(data);
+                                    EvaluationsCtrl.data = data;
+                                    EvaluationsCtrl.data.committee_mtgs = memberInfo.committee_mtgs;
+                                    EvaluationsCtrl.data.house_meetings_missed = EvaluationsCtrl.house_meetings_missed;
+                                },
+                                false
+                            );
+                        } else {
+                            EvaluationsCtrl.isFreshmanEvals = true;
+                            EvaluationsCtrl.data = data;
+                            EvaluationsCtrl.data.committee_mtgs = memberInfo.committee_mtgs;
+                            EvaluationsCtrl.data.house_meetings_missed = EvaluationsCtrl.house_meetings_missed;
+                        }
+                    },
+                    false
+                );
+            }],
+            controllerAs: 'evaluations'
+        };
+    });
+
+    app.directive('housingWidget', function(){
+        return {
+            restrict: 'E',
+            templateUrl: 'directives/housing_widget.html',
+            controller: ["$scope", "EvalsAPI", function($scope, EvalsAPI){
+                var HousingCtrl = this;
+
+                this.data = {};
+                this.queue = {};
+
+                this.queue.inQueue = true;
+
+                if(memberInfo == null){
+                    EvalsAPI.getMemberInfo(
+                        webauthUser,
+                        function(data){
+                            console.log(data);
+                            memberInfo = data;
+                            HousingCtrl.data.housingPoints = memberInfo.housing_points;
+                        },
+                        false
+                    );
+                } else {
+                    this.data.housingPoints = memberInfo.housing_points;
+                }
+
+                EvalsAPI.getQueuePosition(
+                    webauthUser,
+                    function(data){
+                        console.log(data);
+                        HousingCtrl.queue = data;
+
+                        if(HousingCtrl.queue.queuePosition == 0){
+                            HousingCtrl.queue.inQueue = false;
+
+                            EvalsAPI.getRoom(
+                                webauthUser,
+                                function(data){
+                                    console.log(data);
+                                    HousingCtrl.data = data;
+                                    HousingCtrl.data.housingPoints = memberInfo.housing_points;
+
+                                    if (HousingCtrl.data.current.length == 0) {
+                                        HousingCtrl.data.current.room_number = "N/A";
+                                    }
+
+                                    if (HousingCtrl.data.next.length == 0) {
+                                        HousingCtrl.data.next.room_number = "N/A";
+                                    }
+                                },
+                                false
+                            );
+                        } else {
+                            HousingCtrl.queue.inQueue = true;
+                        }
+                    },
+                    false
+                );
+            }],
+            controllerAs: 'housing'
+        };
+    });
+
+    app.directive('majorProjectsWidget', function(){
+        return {
+            restrict: 'E',
+            templateUrl: 'directives/major_projects_widget.html',
+            controller: ["$scope", "EvalsAPI", function($scope, EvalsAPI){
+                var ProjectsCtrl = this;
+
+                EvalsAPI.getMajorProjects(
+                    webauthUser,
+                    function(data){
+                        console.log(data);
+                        ProjectsCtrl.data = data;
+                    },
+                    false
+                );
+            }],
+            controllerAs: 'majorProjects'
+        };
+    });
+})();

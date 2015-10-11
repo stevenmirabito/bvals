@@ -1,0 +1,128 @@
+<div class="panel panel-default" ng-show="evaluations.isFreshmanEvals">
+    <div class="panel-heading">
+        <h3 class="panel-title">Freshman Evaluations
+            <span class="pull-right" ng-show="evaluations.data.result == 'pass'"><span class="glyphicon glyphicon-ok-sign green"></span> Passed</span>
+            <span class="pull-right" ng-show="evaluations.data.result == 'pending'"><span class="glyphicon glyphicon-hourglass yellow"></span> Pending</span>
+            <span class="pull-right" ng-show="evaluations.data.result == 'fail'"><span class="glyphicon glyphicon-ok-sign green"></span> Failed</span>
+        </h3>
+    </div>
+    <div class="panel-body">
+        <table class="table table-striped table-responsive">
+            <tbody>
+            <tr>
+                <th>Packet Due</th>
+                <td>{{evaluations.data.packetDueDate | date:'MMMM dd, yyyy'}}</td>
+            </tr>
+            <tr>
+                <th>Evaluations Date</th>
+                <td>{{evaluations.data.deadline | date:'MMMM dd, yyyy'}}</td>
+            </tr>
+            <tr>
+                <th>Signatures Missed</th>
+                <td>
+                    <span class="glyphicon glyphicon-remove-sign red" ng-hide="evaluations.data.numMissedSigs == '0'"></span>
+                    <span class="glyphicon glyphicon-ok-sign green" ng-show="evaluations.data.numMissedSigs == '0'"></span>
+                    {{evaluations.data.numMissedSigs}}
+                </td>
+            </tr>
+            <tr>
+                <th>Committee Meetings</th>
+                <td>
+                    <span class="glyphicon glyphicon-remove-sign red" ng-show="parseInt(evaluations.data.committee_mtgs) < 10"></span>
+                    <span class="glyphicon glyphicon-ok-sign green" ng-hide="parseInt(evaluations.data.committee_mtgs) < 10"></span>
+                    {{evaluations.data.committee_mtgs}}
+                </td>
+            </tr>
+            <tr>
+                <th>House Meetings Missed</th>
+                <td>
+                    <span class="glyphicon glyphicon-remove-sign red" ng-show="parseInt(evaluations.data.house_meetings_missed) > 0"></span>
+                    <span class="glyphicon glyphicon-ok-sign green" ng-hide="parseInt(evaluations.data.house_meetings_missed) > 0"></span>
+                    {{evaluations.data.house_meetings_missed}}
+                </td>
+            </tr>
+            <tr>
+                <th>Technical Seminars</th>
+                <td>
+                    <span class="glyphicon glyphicon-remove-sign red" ng-show="parseInt(evaluations.data.numTechSems) > 2"></span>
+                    <span class="glyphicon glyphicon-ok-sign green" ng-hide="parseInt(evaluations.data.numTechSems) > 2"></span>
+                    {{evaluations.data.numTechSems}}
+                </td>
+            </tr>
+            <tr>
+                <th>Social Events</th>
+                <td>
+                    <span class="glyphicon glyphicon-remove-sign red" ng-show="parseInt(evaluations.data.numSocEvents) > 1"></span>
+                    <span class="glyphicon glyphicon-ok-sign green" ng-hide="parseInt(evaluations.data.numSocEvents) > 1"></span>
+                    {{evaluations.data.numSocEvents}}
+                </td>
+            </tr>
+            <tr>
+                <th>Freshman Project</th>
+                <td>
+                    <span ng-show="evaluations.data.freshProjPass"><span class="glyphicon glyphicon-ok-sign green"></span> Pass</span>
+                    <span ng-hide="evaluations.data.freshProjPass"><span class="glyphicon glyphicon-remove-sign red"></span> Fail</span>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+        <div>
+            <strong>General Comments:</strong>
+            <div ng-show="evaluations.data.comments">{{evaluations.data.comments}}</div>
+            <div ng-hide="evaluations.data.comments">None</div>
+        </div>
+        <br>
+        <div>
+            <strong>Freshman Project Comments:</strong>
+            <div ng-show="evaluations.data.freshProjComments">{{evaluations.data.freshProjComments}}</div>
+            <div ng-hide="evaluations.data.freshProjComments">None</div>
+        </div>
+    </div>
+</div>
+
+<div class="panel panel-default" ng-hide="evaluations.isFreshmanEvals">
+    <div class="panel-heading">
+        <h3 class="panel-title">Spring Evaluations
+            <span class="pull-right" ng-show="evaluations.data.result == 'pass'"><span class="glyphicon glyphicon-ok-sign green"></span> Passed</span>
+            <span class="pull-right" ng-show="evaluations.data.result == 'pending'"><span class="glyphicon glyphicon-hourglass yellow"></span> Pending</span>
+            <span class="pull-right" ng-show="evaluations.data.result == 'fail'"><span class="glyphicon glyphicon-ok-sign green"></span> Failed</span>
+        </h3>
+    </div>
+    <div class="panel-body">
+        <table class="table table-striped table-responsive">
+            <tbody>
+            <tr>
+                <th>Committee Meetings</th>
+                <td>
+                    <span class="glyphicon glyphicon-remove-sign red" ng-show="parseInt(evaluations.data.committee_mtgs) < 10"></span>
+                    <span class="glyphicon glyphicon-ok-sign green" ng-hide="parseInt(evaluations.data.committee_mtgs) < 10"></span>
+                    {{evaluations.data.committee_mtgs}}
+                </td>
+            </tr>
+            <tr>
+                <th>House Meetings Missed</th>
+                <td>
+                    <span class="glyphicon glyphicon-remove-sign red" ng-show="parseInt(evaluations.data.house_meetings_missed) > 0"></span>
+                    <span class="glyphicon glyphicon-ok-sign green" ng-hide="parseInt(evaluations.data.house_meetings_missed) > 0"></span>
+                    {{evaluations.data.house_meetings_missed}}
+                </td>
+            </tr>
+            <tr>
+                <th>Major Project</th>
+                <td>
+                    <span class="glyphicon glyphicon-ok-sign green" ng-show="evaluations.data.major_project_status == 'pass'"></span>
+                    <span class="glyphicon glyphicon-hourglass yellow" ng-show="evaluations.data.major_project_status == 'pending'"></span>
+                    <span class="glyphicon glyphicon-ok-sign green" ng-show="evaluations.data.major_project_status == 'fail'"></span>
+                    <span ng-hide="evaluations.data.major_project_name.length == 0">{{evaluations.data.major_project_name}}</span>
+                    <span ng-show="evaluations.data.major_project_name.length == 0">None</span>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+        <div>
+            <strong>General Comments:</strong>
+            <div ng-show="evaluations.data.comments">{{evaluations.data.comments}}</div>
+            <div ng-hide="evaluations.data.comments">None</div>
+        </div>
+    </div>
+</div>
