@@ -102,11 +102,11 @@ include('nav.php');
   </button>
   <ul class="dropdown-menu">
     <li class="dropdown-header">Year</li>
-    <li><a href="#">Current</a></li>
-    <li><a href="#">Next</a></li>
+    <li><a ng-click="updateFilter(year,c)">Current</a></li>
+    <li><a ng-click="updateFilter(year,n)">Next</a></li>
     <li class="dropdown-header">Room Type</li>
-    <li><a href="#">All</a></li>
-    <li><a href="#">Empty</a></li>
+    <li><a ng-click="updateFilter(room,all)">All</a></li>
+    <li><a ng-click="updateFilter(room,empty)">Empty</a></li>
   </ul>
 </div>
                             
@@ -124,12 +124,13 @@ include('nav.php');
                                         <th>Roommate 2</th>
                                         
                                     </tr>
-                                    <!--dir-paginate="member in (data | orderBy: '-housingPoints') | itemsPerPage: 20"-->
-                                    <tr dir-paginate="room in (data | orderBy: '+room_number') | itemsPerPage: 5" pagination-id="roster" ng-cloak>
+                                   
+                                    <!-- FIX UPDATE FILTER CALL -->
+                                    <tr dir-paginate="room in (data | orderBy: '+room_number' | filter:yearFilter| filter:roomFilter) | itemsPerPage: 10" pagination-id="roster" ng-cloak>
                                         <td>{{room.room_number}}</td>
                                         <td>{{room.total_housing_points}}</td>
-                                        <td>{{room.roommate1}} - {{room.roommate1_housing_points}}</td>
-                                        <td>{{room.roommate2}} - {{room.roommate2_housing_points}}</td>
+                                        <td>{{room.roommate1}}</td>
+                                        <td>{{room.roommate2}}</td>
                                     </tr>
                                 </tbody>
                                 </table>
