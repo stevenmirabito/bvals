@@ -17,7 +17,7 @@
         // ajaxSuccess() - fires appropriate AJAX callback based on response status
         var ajaxSuccess = function (cbPass, cbFail) {
             return function (resp) {
-                console.log(resp);
+                
                 cbPass(resp);
             };
         };
@@ -81,7 +81,7 @@
             EvalsAPI.getMemberInfo(
                 webauthUser,
                 function(data){
-                    console.log(data);
+                     
                     HeaderCtrl.data = data;
                     memberInfo = data;
                 },
@@ -101,7 +101,7 @@
             EvalsAPI.getQueue(
                 webauthUser,
                 function(data){
-                    console.log(data);
+                     
                     $scope.data = data;
                     
                 },
@@ -117,7 +117,7 @@
             EvalsAPI.getAllOnFloorMembers(
                 webauthUser,
                 function(data){
-                    console.log(data);
+                     
                     $scope.data = data;
                     
                 },
@@ -150,7 +150,7 @@
                 EvalsAPI.getAttendance(
                     webauthUser,
                     function(data){
-                        console.log(data);
+                         
                         AttendanceCtrl.data = data;
 
                         if(AttendanceCtrl.data.length != 0){
@@ -176,7 +176,7 @@
                 EvalsAPI.getConditionals(
                     webauthUser,
                     function(data){
-                        console.log(data);
+                         
                         ConditionalsCtrl.data = data;
 
                         if(ConditionalsCtrl.data.length != 0){
@@ -203,7 +203,7 @@
                     EvalsAPI.getMemberInfo(
                         webauthUser,
                         function(data){
-                            console.log(data);
+                             
                             memberInfo = data;
                         },
                         false
@@ -213,7 +213,7 @@
                 EvalsAPI.getHouseMeetings(
                     webauthUser,
                     function(data){
-                        console.log(data);
+                         
 
                         data.forEach(function(meeting){
                             console.log(meeting);
@@ -228,13 +228,13 @@
                 EvalsAPI.getFreshmanEvals(
                     webauthUser,
                     function(data){
-                        console.log(data);
+                         
 
                         if(data.length == 0){
                             EvalsAPI.getSpringEvals(
                                 webauthUser,
                                 function(data) {
-                                    console.log(data);
+                                     
                                     EvaluationsCtrl.data = data;
                                     EvaluationsCtrl.data.committee_mtgs = memberInfo.committee_mtgs;
                                     EvaluationsCtrl.data.house_meetings_missed = EvaluationsCtrl.house_meetings_missed;
@@ -271,7 +271,7 @@
                     EvalsAPI.getMemberInfo(
                         webauthUser,
                         function(data){
-                            console.log(data);
+                            
                             memberInfo = data;
                             HousingCtrl.data.housingPoints = memberInfo.housing_points;
                         },
@@ -284,7 +284,7 @@
                 EvalsAPI.getQueuePosition(
                     webauthUser,
                     function(data){
-                        console.log(data);
+                        
                         HousingCtrl.queue = data;
 
                         if(HousingCtrl.queue.queuePosition == 0){
@@ -293,7 +293,7 @@
                             EvalsAPI.getRoom(
                                 webauthUser,
                                 function(data){
-                                    console.log(data);
+                                    
                                     HousingCtrl.data = data;
                                     HousingCtrl.data.housingPoints = memberInfo.housing_points;
 
@@ -328,7 +328,7 @@
                 EvalsAPI.getMajorProjects(
                     webauthUser,
                     function(data){
-                        console.log(data);
+                        
                         ProjectsCtrl.data = data;
                     },
                     false
