@@ -63,8 +63,8 @@
 
 <div class="container main">
     <div class="panel panel-default">
+        <div class="panel-heading"><h3 class="panel-title">Major Project Submission Form</h3></div>
         <div class="panel-body">
-            <h2>Major Projects</h2>
             <form class="form-horizontal" role="form">
   <div class="form-group">
     <label class="control-label col-sm-2" for="commitee">Committee:</label>
