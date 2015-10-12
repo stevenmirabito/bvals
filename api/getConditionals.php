@@ -31,6 +31,4 @@ $json_response = json_encode($arr);
 // # Return the response
 echo $json_response;
 
-
-
 ?>
