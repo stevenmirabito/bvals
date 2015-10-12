@@ -18,12 +18,11 @@ $db = new mysqli($host, $dbusername, $dbpassword, $dbname) or die("Connection Er
 
 if (isset($_GET['user'])) {
     $username = $db->real_escape_string($_GET['user']);
+    $query = "SELECT * FROM $springEvalsTable WHERE username='$username'";
 }else{
-    // Error - No ID given
-    die("No Username Provided as URL Parameter.");
+    //return all
+    $query = "SELECT * FROM $springEvalsTable";
 }
-
-$query = "SELECT * FROM $springEvalsTable WHERE username='$username'";
 
 if(!$result = $db->query($query)){
         die("RESULT ERROR 1: " . $db->error.__LINE__);
