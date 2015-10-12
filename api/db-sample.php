@@ -1,7 +1,7 @@
 <?php
 //Enter in your server variables and then rename this file as db.php
     $host = "localhost";
-	$dbname = ""; //
+    $dbname = ""; 
     $dbusername = ""; 
     $dbpassword = "";
     $membersTable = "members";
