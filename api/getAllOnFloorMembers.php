@@ -15,7 +15,6 @@ include 'db.php';
 
 $db = new mysqli($host, $dbusername, $dbpassword, $dbname) or die("Connection Error: " . mysqli_error($db));
 
-
 $query = "SELECT * FROM $membersTable WHERE on_floor='1'";
 
 if(!$result = $db->query($query)){
@@ -38,6 +37,5 @@ $json_response = json_encode($arr);
 
 // # Return the response
 echo $json_response;
-
 
 ?>
