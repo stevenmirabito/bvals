@@ -12,7 +12,7 @@
     // EvalsAPI - service for making Ajax requests to the EvalsAPI
     app.factory("EvalsAPI", ["$http", function($http){
         // API base URL
-        var apiUrl = "https://get-click.com/evalsapi/";
+        var apiUrl = "https://get-click.com/bvals/api/";
 
         // ajaxSuccess() - fires appropriate AJAX callback based on response status
         var ajaxSuccess = function (cbPass, cbFail) {
@@ -32,8 +32,11 @@
             getMemberInfo: function (username, pass, fail) {
                 $http.get(apiUrl + "getMemberInfo.php?user=" + username).success(ajaxSuccess(pass, fail)).error(ajaxError);
             },
+            getAllOnFloorMembers: function (username, pass, fail) {
+                $http.get(apiUrl + "getAllOnFloorMembers.php").success(ajaxSuccess(pass, fail)).error(ajaxError);
+            },
             getQueue: function (username, pass, fail) {
-                $http.get(apiUrl + "getQueue.php?user=" + username).success(ajaxSuccess(pass, fail)).error(ajaxError);
+                $http.get(apiUrl + "getQueue.php").success(ajaxSuccess(pass, fail)).error(ajaxError);
             },
             getQueuePosition: function (username, pass, fail) {
                 $http.get(apiUrl + "getQueuePosition.php?user=" + username).success(ajaxSuccess(pass, fail)).error(ajaxError);
@@ -86,6 +89,39 @@
         } else {
             HeaderCtrl.data = memberInfo;
         }
+    }]);
+    
+    
+    app.controller("HousingQueueController", ["$scope", "EvalsAPI", function($scope, EvalsAPI){
+        // Hardcoded for now
+        // TODO: Webauth integration in getMemberInfo.php
+        webauthUser = 'smirabito';
+        
+            EvalsAPI.getQueue(
+                webauthUser,
+                function(data){
+                    console.log(data);
+                    $scope.data = data;
+                    
+                },
+                false
+            );
+    }]);
+    
+    app.controller("OnFloorMembersController", ["$scope", "EvalsAPI", function($scope, EvalsAPI){
+        // Hardcoded for now
+        // TODO: Webauth integration in getMemberInfo.php
+        webauthUser = 'smirabito';
+        
+            EvalsAPI.getAllOnFloorMembers(
+                webauthUser,
+                function(data){
+                    console.log(data);
+                    $scope.data = data;
+                    
+                },
+                false
+            );
     }]);
 
     /*
