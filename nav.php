@@ -7,7 +7,7 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="index.html"><img src="images/csh_logo_white.svg" alt="CSH" class="logo"> <span>Evaluations</span></a>
+            <a class="navbar-brand" href="index.php"><img src="images/csh_logo_white.svg" alt="CSH" class="logo"> <span>Evaluations</span></a>
         </div>
         <div id="navbar" class="navbar-collapse collapse">
             <ul class="nav navbar-nav">
@@ -26,15 +26,15 @@
                         <li><a href="#"><span class="glyphicon glyphicon-tree-deciduous"></span> Spring Evaluations</a></li>
                     </ul>
                 </li>
-                <li><a href="#"><span class="glyphicon glyphicon-blackboard"></span> Major Projects</a></li>
-                <li class="active"><a href="conditional.html"><span class="glyphicon glyphicon-exclamation-sign"></span> Conditionals</a></li>
-                <li><a href="housing.html"><span class="glyphicon glyphicon-home"></span> Housing</a></li>
+                <li><a href="list_projects.php"><span class="glyphicon glyphicon-blackboard"></span> Major Projects</a></li>
+                <li><a href="conditional.php"><span class="glyphicon glyphicon-exclamation-sign"></span> Conditionals</a></li>
+                <li><a href="housing.php"><span class="glyphicon glyphicon-home"></span> Housing</a></li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
                 <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" ng-cloak><img src="https://profiles.csh.rit.edu/image/{{member.data.username}}" class="profile-picture"> {{member.data.username}} <span class="caret"></span></a>
                     <ul class="dropdown-menu">
-                        <li><a href="index.html"><span class="glyphicon glyphicon-dashboard"></span> Dashboard</a></li>
+                        <li><a href="index.php"><span class="glyphicon glyphicon-dashboard"></span> Dashboard</a></li>
                         <li><a href="https://profiles.csh.rit.edu/user/{{member.data.username}}"><span class="glyphicon glyphicon-user"></span> Profiles</a></li>
                         <li role="separator" class="divider"></li>
                         <li><a href="https://members.csh.rit.edu/"><span class="glyphicon glyphicon-globe"></span> Members Portal</a></li>
