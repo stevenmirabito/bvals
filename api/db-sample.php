@@ -1,5 +1,6 @@
 <?php
 //Enter in your server variables and then rename this file as db.php
+header('Access-Control-Allow-Origin: *');
     $host = "localhost";
     $dbname = ""; 
     $dbusername = ""; 

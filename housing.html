@@ -77,13 +77,13 @@
                                         <th>Housing Points</th>
                                         
                                     </tr>
-                                    <tr dir-paginate="member in (data | orderBy: '-housingPoints') | itemsPerPage: 5 pagination-id='on-floor'">
+                                    <tr dir-paginate="member in (data | orderBy: '-housingPoints') | itemsPerPage: 5" pagination-id="on-floor">
                                         <td>{{member.username}}</td>
                                         <td>{{member.housingPoints}}</td>
                                     </tr>
                                 </tbody>
                             </table>
-                            <dir-pagination-controls pagination-id='on-floor'></dir-pagination-controls>
+                            <dir-pagination-controls pagination-id="on-floor"></dir-pagination-controls>
                         
                         
                     </div>
@@ -102,13 +102,13 @@
                                         <th>Housing Points</th>
                                         
                                     </tr>
-                                    <tr dir-paginate="member in (data | orderBy: '-housingPoints') | itemsPerPage: 5 pagination-id='housing-queue'">
+                                    <tr dir-paginate="member in (data | orderBy: '-housingPoints') | itemsPerPage: 5" pagination-id="housing-queue">
                                         <td>{{member.username}}</td>
                                         <td>{{member.housingPoints}}</td>
                                     </tr>
                                 </tbody>
                             </table>
-                            <dir-pagination-controls></dir-pagination-controls>
+                            <dir-pagination-controls pagination-id="housing-queue"></dir-pagination-controls>
                         
                         
                     </div>
