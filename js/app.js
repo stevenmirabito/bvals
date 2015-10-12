@@ -140,11 +140,47 @@
         // TODO: Webauth integration in getMemberInfo.php
         webauthUser = 'smirabito';
 
+        this.getCommitteeMeetingsForMember = function(uid){
+            var member = $.grep($scope.memberInfo, function(e){
+                return e.username === uid;
+            });
+
+            return member.committee_mtgs;
+        };
+
+        this.getHouseMeetingsMissedForMember = function(uid){
+            var member = $.grep($scope.houseMeetingsData, function(e){
+                return e.username === uid;
+            });
+
+            return member.house_meetings_missed;
+        };
+
+        if(memberInfo == null){
+            EvalsAPI.getMemberInfo(
+                "",
+                function(data){
+                    $scope.memberInfo = memberInfo;
+                },
+                false
+            );
+        } else {
+            $scope.memberInfo = memberInfo;
+        }
+
+        EvalsAPI.getHouseMeetings(
+            "",
+            function (data) {
+                $scope.houseMeetingsData = data;
+            },
+            false
+        );
+
         if($scope.type == 'freshman') {
             EvalsAPI.getFreshmanEvals(
                 "",
                 function(data){
-                    $scope.data = data;
+                    $scope.evalData = data;
                 },
                 false
             );
@@ -152,7 +188,7 @@
             EvalsAPI.getSpringEvals(
                 "",
                 function(data){
-                    $scope.data = data;
+                    $scope.evalData = data;
                 },
                 false
             );
@@ -256,7 +292,6 @@
                          
 
                         data.forEach(function(meeting){
-                            console.log(meeting);
                             if(!meeting.present){
                                 EvaluationsCtrl.house_meetings_missed++
                             }

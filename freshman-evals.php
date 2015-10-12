@@ -37,18 +37,48 @@ include('nav.php');
                     <th>Result</th>
                 </tr>
                 <tr ng-repeat="freshman in evalResults.data">
-                    <td>{{freshman.}}</td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
+                    <td>{{freshman.username}}</td>
+                    <td>{{freshman.packetDueDate | date:'MMMM dd, yyyy'}}</td>
+                    <td>{{freshman.voteDate | date:'MMMM dd, yyyy'}}</td>
+                    <td>
+                        <span class="glyphicon glyphicon-remove-sign red" ng-hide="freshman.numMissedSigs == '0'"></span>
+                        <span class="glyphicon glyphicon-ok-sign green" ng-show="freshman.numMissedSigs == '0'"></span>
+                        {{freshman.numMissedSigs}}
+                    </td>
+                    <td>
+                        <span class="glyphicon glyphicon-remove-sign red" ng-show="parseInt(freshman.getCommitteeMeetingsForMember(freshman.username)) < 10"></span>
+                        <span class="glyphicon glyphicon-ok-sign green" ng-hide="parseInt(freshman.getCommitteeMeetingsForMember(freshman.username)) < 10"></span>
+                        {{freshman.getCommitteeMeetingsForMember(freshman.username)}}
+                    </td>
+                    <td>
+                        <span class="glyphicon glyphicon-remove-sign red" ng-show="parseInt(freshman.getHouseMeetingsMissedForMember(freshman.username)) > 0"></span>
+                        <span class="glyphicon glyphicon-ok-sign green" ng-hide="parseInt(freshman.getHouseMeetingsMissedForMember(freshman.username)) > 0"></span>
+                        {{freshman.getHouseMeetingsMissedForMember(freshman.username)}}
+                    </td>
+                    <td>
+                        <div ng-repeat="comment in house_meetings_comments">{{comment}}</div>
+                    </td>
+                    <td>
+                        <span class="glyphicon glyphicon-remove-sign red" ng-show="parseInt(freshman.numTechSems) > 2"></span>
+                        <span class="glyphicon glyphicon-ok-sign green" ng-hide="parseInt(freshman.numTechSems) > 2"></span>
+                        {{freshman.numTechSems}}
+                    </td>
+                    <td>
+                        <span class="glyphicon glyphicon-remove-sign red" ng-show="parseInt(freshman.numSocEvents) > 1"></span>
+                        <span class="glyphicon glyphicon-ok-sign green" ng-hide="parseInt(freshman.numSocEvents) > 1"></span>
+                        {{freshman.numSocEvents}}
+                    </td>
+                    <td>
+                        <span ng-show="freshman.freshProjPass == '1'"><span class="glyphicon glyphicon-ok-sign green"></span> Pass</span>
+                        <span ng-hide="freshman.freshProjPass == '1'"><span class="glyphicon glyphicon-remove-sign red"></span> Fail</span>
+                    </td>
+                    <td>
+                        <div ng-show="freshman.comments">{{freshman.comments}}</div>
+                        <div ng-hide="freshman.comments">None</div>
+                    </td>
+                    <td>
+
+                    </td>
 
                     <td>{{conditional.description}}</td>
                     <td>{{conditional.deadline | date:'MMMM dd, yyyy'}}</td>
