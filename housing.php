@@ -44,8 +44,9 @@ include('nav.php');
                     
                         </h3>
                     </div>
-                    <div class="panel-body">
-                        <table class="table table-striped table-responsive" ng-controller="OnFloorMembersController">
+                    <div class="panel-body table-fill">
+                        <div class="table-responsive">
+                        <table class="table table-striped no-bottom-margin" ng-controller="OnFloorMembersController">
                                 <tbody>
                                     <tr>
                                         <th>Member</th>
@@ -58,7 +59,8 @@ include('nav.php');
                                     </tr>
                                 </tbody>
                             </table>
-                            <dir-pagination-controls pagination-id="on" max-size="5"></dir-pagination-controls>
+                            </div>
+                            <dir-pagination-controls pagination-id="on" max-size="5" class="panel-inner-padding"></dir-pagination-controls>
                         
                         
                     </div>
@@ -69,8 +71,9 @@ include('nav.php');
                         <div class="panel-heading">
                             <h3 class="panel-title">Housing Queue</h3>
                         </div>
-                        <div class="panel-body" ng-controller="HousingQueueController">
-                        <table class="table table-striped table-responsive">
+                        <div class="panel-body table-fill" ng-controller="HousingQueueController">
+                        <div class="table-responsive">
+                        <table class="table table-striped no-bottom-margin">
                                 <tbody>
                                     <tr>
                                         <th>Member</th>
@@ -83,7 +86,8 @@ include('nav.php');
                                     </tr>
                                 </tbody>
                             </table>
-                            <dir-pagination-controls pagination-id="housing" max-size="5"></dir-pagination-controls>
+                            </div>
+                            <dir-pagination-controls pagination-id="housing" max-size="5" class="panel-inner-padding"></dir-pagination-controls>
                         
                         
                     </div>
@@ -102,18 +106,19 @@ include('nav.php');
   </button>
   <ul class="dropdown-menu">
     <li class="dropdown-header">Year</li>
-    <li><a ng-click="updateFilter(year,c)">Current</a></li>
-    <li><a ng-click="updateFilter(year,n)">Next</a></li>
+    <li><a ng-click="yearFilter={year:current}">Current</a></li>
+    <li><a ng-click="yearFilter={year:next}">Next</a></li>
     <li class="dropdown-header">Room Type</li>
-    <li><a ng-click="updateFilter(room,all)">All</a></li>
-    <li><a ng-click="updateFilter(room,empty)">Empty</a></li>
+    <li><a ng-click="updateFilter(all)">All</a></li>
+    <li><a ng-click="updateFilter(empty)">Empty</a></li>
   </ul>
 </div>
                             
                             </h3>
                         </div>
-                        <div class="panel-body table-responsive" ng-controller="HousingRosterController">
-                            <table class="table table-striped">
+                        <div class="panel-body table-fill" ng-controller="HousingRosterController">
+                            <div class="table-responsive">
+                            <table class="table table-striped no-bottom-margin">
                                 
                             
                             <tbody>
@@ -126,7 +131,7 @@ include('nav.php');
                                     </tr>
                                    
                                     <!-- FIX UPDATE FILTER CALL -->
-                                    <tr dir-paginate="room in (data | orderBy: '+room_number' | filter:yearFilter| filter:roomFilter) | itemsPerPage: 10" pagination-id="roster" ng-cloak>
+                                    <tr dir-paginate="room in (data | orderBy: '+room_number' | filter:yearFilter | filter:roomFilter) | itemsPerPage: 10" pagination-id="roster" ng-cloak>
                                         <td>{{room.room_number}}</td>
                                         <td>{{room.total_housing_points}}</td>
                                         <td>{{room.roommate1}}</td>
@@ -134,7 +139,8 @@ include('nav.php');
                                     </tr>
                                 </tbody>
                                 </table>
-                            <dir-pagination-controls pagination-id="roster" max-size="5"></dir-pagination-controls>
+                                </div>
+                            <dir-pagination-controls pagination-id="roster" max-size="5" class="panel-inner-padding"></dir-pagination-controls>
                         
                     </div>
                     </div>
@@ -144,42 +150,7 @@ include('nav.php');
             
             </div>
         </div>
-    </div>
-    
-<!--
-    <div class="panel panel-default">
-        <div class="panel-body">
-            <div class="page-header row">
-                <div class="col-md-2 profile-col-fix">
-                    <img class="thumbnail profile-image" ng-src="https://profiles.csh.rit.edu/image/{{member.data.username}}">
-                </div>
-                <div class="col-md-10">
-                    <h1>{{member.data.username}}</h1>
-                    <span class="profile-badges">
-                        <span class="label label-success" ng-show="member.data.active">Active</span>
-                        <span class="label label-danger" ng-hide="member.data.active">Inactive</span>
-                        <span class="label label-primary" ng-show="member.data.on_floor">On-floor</span>
-                        <span class="label label-default" ng-hide="member.data.on_floor">Off-floor</span>
-                        <span class="label label-primary" ng-show="member.data.voting">Voting</span>
-                        <span class="label label-default" ng-hide="member.data.voting">Non-Voting</span>
-                    </span>
-                </div>
-            </div>
-            <div id="grid" data-columns>
-                <housing-widget></housing-widget>
-                <evaluations-widget></evaluations-widget>
-                <conditionals-widget></conditionals-widget>
-                <major-projects-widget></major-projects-widget>
-                <attendance-widget></attendance-widget>
-            </div>
-        </div>
-    </div>
--->
-    
-    
-    
-    
-    
+    </div>    
     
 </div>
 

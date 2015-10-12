@@ -18,13 +18,10 @@ include('nav.php');
 ?>
 
 <div class="container main">
-    <div class="panel panel-default">
-        <div class="panel-body">
-            <div class="page-header row">
-            </div>
+    
+            
             <conditionals-widget all="true"></conditionals-widget>
-        </div>
-    </div>
+        
 </div>
 
 <script src="js/libraries/jquery.min.js"></script>

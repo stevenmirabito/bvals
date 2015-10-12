@@ -5,8 +5,8 @@
     <div class="panel-body" ng-show="attendance.data.length == 0">
         <div class="alert alert-warning" role="alert">You have not attended any events.</div>
     </div>
-    <div class="panel-body" id="attendance-widget-body" ng-hide="attendance.data.length == 0">
-        <table class="table table-striped table-responsive">
+    <div class="panel-body table-fill" id="attendance-widget-body" ng-hide="attendance.data.length == 0">
+        <table class="table table-striped table-responsive no-bottom-margin">
             <tbody>
                 <tr>
                     <th>Event</th>

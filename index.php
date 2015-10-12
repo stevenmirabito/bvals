@@ -26,7 +26,7 @@ include('nav.php');
                 </div>
                 <div class="col-md-10">
                     <h1 ng-cloak>{{member.data.username}}</h1>
-                    <span class="profile-badges">
+                    <span class="profile-badges" ng-cloak>
                         <span class="label label-success" ng-show="member.data.active">Active</span>
                         <span class="label label-danger" ng-hide="member.data.active">Inactive</span>
                         <span class="label label-primary" ng-show="member.data.on_floor">On-floor</span>

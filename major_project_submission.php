@@ -46,7 +46,7 @@ include('nav.php');
   <div class="form-group">
     <label class="control-label col-sm-2" for="description">Description:</label>
     <div class="col-sm-10"> 
-      <textarea class="form-control" name="description" rows="5" placeholder="Description"></textarea>
+      <textarea class="form-control" name="description" rows="5" style="resize: none;" placeholder="Description"></textarea>
     </div>
   </div>
   <div class="form-group"> 

@@ -8,9 +8,9 @@
             <div class="panel-heading">
                 <strong>{{project.project_name}}</strong>
                 <small><em>{{project.project_committee | capitalize}}</em></small>
-                <span class="pull-right" ng-show="project.status == 'pass'"><span class="glyphicon glyphicon-ok-sign green"></span> Passed</span>
-                <span class="pull-right" ng-show="project.status == 'pending'"><span class="glyphicon glyphicon-hourglass yellow"></span> Pending</span>
-                <span class="pull-right" ng-show="project.status == 'fail'"><span class="glyphicon glyphicon-ok-sign green"></span> Failed</span>
+                <span class="pull-right" ng-show="project.status == 'pass'"><span class="glyphicon glyphicon-ok-sign green"></span> <span class="mobile-hide">Passed</span></span>
+                <span class="pull-right" ng-show="project.status == 'pending'"><span class="glyphicon glyphicon-hourglass yellow"></span> <span class="mobile-hide">Pending</span></span>
+                <span class="pull-right" ng-show="project.status == 'fail'"><span class="glyphicon glyphicon-ok-sign green"></span> <span class="mobile-hide">Failed</span></span>
             </div>
             <div class="panel-body">
                 {{project.project_description}}

@@ -148,24 +148,16 @@
                     console.log(data);                
                     $scope.data = data;
                     $scope.roomFilterValue = 0;
-                    $scope.yearFilterValue = 'c';
+                    $scope.yearFilter = {year:'current'};
+                   
                     
                     //FIX updateFilter - does not work rn
                     
                     
-                    $scope.updateFilter = function(func,val){
-                        console.log("CLICK: ",func,val); //debug
-                if(func == 'year'){
-                    if(val == 'c'){
-                        $scope.roomFilterValue = 'c';
-                        $scope.roomFilter;
-                    }
-                    else{
-                        $scope.roomFilterValue = 'n';
-                        $scope.roomFilter;
-                    }
-                 }
-                else if(func == 'room'){
+                    $scope.updateFilter = function(val){
+                         //debug
+                
+                
                     if(val == 'empty'){
                         $scope.roomFilterValue = 1;
                         
@@ -174,16 +166,9 @@
                          $scope.roomFilterValue = 0;
                     }
                     
-                }
+                
                         
                     }
-                    $scope.yearFilter = function (item) {
-                        if($scope.yearFilterValue == 'c'){
-                            return item.year === 'current'; 
-                        }
-                        else if($scope.yearFilterValue == 'n'){
-                            return item.year === 'next';  
-                        }
                     
                     $scope.roomFilter = function (item) {
                         if($scope.roomFilterValue == 1){
@@ -196,7 +181,7 @@
 };
                 },
                 false
-                });
+                );
     }]);
 
     app.controller("EvaluationResultsController", ["$scope", "EvalsAPI", function($scope, EvalsAPI){
