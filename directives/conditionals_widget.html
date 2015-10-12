@@ -12,6 +12,7 @@
                     <th>Status</th>
                 </tr>
                 <tr ng-repeat="conditional in conditionals.data">
+                    <td ng-if="all">{{conditional.username}}</td>
                     <td>{{conditional.description}}</td>
                     <td>{{conditional.deadline | date:'MMMM dd, yyyy'}}</td>
                     <td ng-show="conditional.status=='pending'"><span class="glyphicon glyphicon-hourglass yellow"></span> Pending</td>
