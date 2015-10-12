@@ -44,6 +44,9 @@
             getQueuePosition: function (username, pass, fail) {
                 $http.get(apiUrl + "getQueuePosition.php?user=" + username).success(ajaxSuccess(pass, fail)).error(ajaxError);
             },
+            getRoster: function (username, pass, fail) {
+                $http.get(apiUrl + "getRoster.php").success(ajaxSuccess(pass, fail)).error(ajaxError);
+            },
             getRoom: function (username, pass, fail) {
                 $http.get(apiUrl + "getRoom.php?user=" + username).success(ajaxSuccess(pass, fail)).error(ajaxError);
             },
@@ -128,6 +131,21 @@
                 webauthUser,
                 function(data){
                      
+                    $scope.data = data;
+                    
+                },
+                false
+            );
+    }]);
+    app.controller("HousingRosterController", ["$scope", "EvalsAPI", function($scope, EvalsAPI){
+        // Hardcoded for now
+        // TODO: Webauth integration in getMemberInfo.php
+        webauthUser = 'smirabito';
+        
+            EvalsAPI.getRoster(
+                webauthUser,
+                function(data){
+                     console.log(data);
                     $scope.data = data;
                     
                 },

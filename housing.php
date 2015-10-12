@@ -52,7 +52,7 @@ include('nav.php');
                                         <th>Housing Points</th>
                                         
                                     </tr>
-                                    <tr dir-paginate="member in (data | filter:searchText| orderBy: '-housingPoints') | itemsPerPage: 5" pagination-id="on">
+                                    <tr dir-paginate="member in (data | filter:searchText| orderBy: '-housingPoints') | itemsPerPage: 5" pagination-id="on" ng-cloak>
                                         <td>{{member.username}}</td>
                                         <td>{{member.housingPoints}}</td>
                                     </tr>
@@ -77,7 +77,7 @@ include('nav.php');
                                         <th>Housing Points</th>
                                         
                                     </tr>
-                                    <tr dir-paginate="member in (data | orderBy: '-housingPoints') | itemsPerPage: 5" pagination-id="housing">
+                                    <tr dir-paginate="member in (data | orderBy: '-housingPoints') | itemsPerPage: 5" pagination-id="housing" ng-cloak>
                                         <td>{{member.username}}</td>
                                         <td>{{member.housingPoints}}</td>
                                     </tr>
@@ -112,7 +112,7 @@ include('nav.php');
                             
                             </h3>
                         </div>
-                        <div class="panel-body table-responsive">
+                        <div class="panel-body table-responsive" ng-controller="HousingRosterController">
                             <table class="table table-striped">
                                 
                             
@@ -125,14 +125,15 @@ include('nav.php');
                                         
                                     </tr>
                                     <!--dir-paginate="member in (data | orderBy: '-housingPoints') | itemsPerPage: 20"-->
-                                    <tr>
-                                        <td>9999</td>
-                                        <td>2</td>
-                                        <td>Brandon Hudson</td>
-                                        <td>Steven Mirabito</td>
+                                    <tr dir-paginate="room in (data | orderBy: '+room_number') | itemsPerPage: 5" pagination-id="roster" ng-cloak>
+                                        <td>{{room.room_number}}</td>
+                                        <td>{{room.total_housing_points}}</td>
+                                        <td>{{room.roommate1}} - {{room.roommate1_housing_points}}</td>
+                                        <td>{{room.roommate2}} - {{room.roommate2_housing_points}}</td>
                                     </tr>
                                 </tbody>
                                 </table>
+                            <dir-pagination-controls pagination-id="roster" max-size="5"></dir-pagination-controls>
                         
                     </div>
                     </div>
