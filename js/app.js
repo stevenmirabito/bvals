@@ -57,7 +57,12 @@
                 $http.get(apiUrl + "getFreshmanEvals.php?user=" + username).success(ajaxSuccess(pass, fail)).error(ajaxError);
             },
             getConditionals: function (username, pass, fail) {
-                $http.get(apiUrl + "getConditionals.php?user=" + username).success(ajaxSuccess(pass, fail)).error(ajaxError);
+                if(username !== "") {
+                    $http.get(apiUrl + "getConditionals.php?user=" + username).success(ajaxSuccess(pass, fail)).error(ajaxError);
+                }
+                else {
+                    $http.get(apiUrl + "getConditionals.php").success(ajaxSuccess(pass, fail)).error(ajaxError);
+                }
             },
             getAttendance: function (username, pass, fail) {
                 $http.get(apiUrl + "getAttendance.php?user=" + username).success(ajaxSuccess(pass, fail)).error(ajaxError);
@@ -166,6 +171,10 @@
 
     app.directive('conditionalsWidget', function(){
         return {
+            scope: {
+                all: '='
+            },
+            replace: true,
             restrict: 'E',
             templateUrl: 'directives/conditionals_widget.html',
             controller: ["$scope", "EvalsAPI", function($scope, EvalsAPI){
@@ -174,7 +183,7 @@
                 this.noData = true;
 
                 EvalsAPI.getConditionals(
-                    webauthUser,
+                    ($scope.all ? "" : webauthUser),
                     function(data){
                          
                         ConditionalsCtrl.data = data;
