@@ -58,10 +58,8 @@
             },
             getAttendance: function (username, pass, fail) {
                 $http.get(apiUrl + "getAttendance.php?user=" + username).success(ajaxSuccess(pass, fail)).error(ajaxError);
-            },
-            getHouseMeetings: function (username, pass, fail) {
-                $http.get(apiUrl + "getHouseMeetings.php?user=" + username).success(ajaxSuccess(pass, fail)).error(ajaxError);
             }
+            
         };
     }]);
 
