@@ -32,6 +32,9 @@
             getMemberInfo: function (username, pass, fail) {
                 $http.get(apiUrl + "getMemberInfo.php?user=" + username).success(ajaxSuccess(pass, fail)).error(ajaxError);
             },
+            getHouseMeetings: function (username, pass, fail) {
+                $http.get(apiUrl + "getHouseMeetings.php?user=" + username).success(ajaxSuccess(pass, fail)).error(ajaxError);
+            },
             getAllOnFloorMembers: function (username, pass, fail) {
                 $http.get(apiUrl + "getAllOnFloorMembers.php").success(ajaxSuccess(pass, fail)).error(ajaxError);
             },
