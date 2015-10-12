@@ -102,7 +102,7 @@
         // Hardcoded for now
         // TODO: Webauth integration in getMemberInfo.php
         webauthUser = 'smirabito';
-        
+
             EvalsAPI.getQueue(
                 webauthUser,
                 function(data){
@@ -128,6 +128,32 @@
                 },
                 false
             );
+    }]);
+
+    app.controller("EvaluationResultsController", ["$scope", "EvalsAPI", function($scope, EvalsAPI){
+        // Hardcoded for now
+        // TODO: Webauth integration in getMemberInfo.php
+        webauthUser = 'smirabito';
+
+        if($scope.type == 'freshman') {
+            EvalsAPI.getFreshmanEvals(
+                "",
+                function(data){
+                    $scope.data = data;
+                },
+                false
+            );
+        } else if($scope.type == 'spring') {
+            EvalsAPI.getSpringEvals(
+                "",
+                function(data){
+                    $scope.data = data;
+                },
+                false
+            );
+        } else if($scope.type == 'winter') {
+            // TODO: Winter evals API?
+        }
     }]);
 
     /*

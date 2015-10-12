@@ -19,28 +19,24 @@ include 'db.php';
 $db = new mysqli($host, $dbusername, $dbpassword, $dbname) or die("Connection Error: " . mysqli_error($db));
 
 if (isset($_GET['user'])) {
+    // Get freshmen eval results for the specified user
     $username = $db->real_escape_string($_GET['user']);
-}else{
-    // Error - No ID given
-    die("No Username Provided as URL Parameter.");
+    $query = "SELECT * FROM $freshmanEvalsTable WHERE username='$username'";
+} else {
+    // Get all of the freshmen eval results
+    $query = "SELECT * FROM $freshmanEvalsTable";
 }
 
-$query = "SELECT * FROM $freshmanEvalsTable WHERE username='$username'";
-
-
 if(!$result = $db->query($query)){
-        die("RESULT ERROR 1: " . $db->error.__LINE__);
-    }
+    die("RESULT ERROR 1: " . $db->error.__LINE__);
+}
 
 $arr = array();
 if($result->num_rows > 0) {
 	while($row = $result->fetch_assoc()) {
         $tempRow = $row;
-        
-        
-      
-        
-        //Get House Meetings
+
+        // Get House Meetings
         $hQuery = "SELECT * FROM $houseMeetingsTable WHERE username='$username' ";
         if(!$hResult = $db->query($hQuery)){
         die("RESULT ERROR 2: " . $db->error.__LINE__);
