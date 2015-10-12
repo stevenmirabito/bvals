@@ -12,7 +12,7 @@ include 'db.php';
 
 $db = new mysqli($host, $dbusername, $dbpassword, $dbname) or die("Connection Error: " . mysqli_error($db));
 
-$query = "SELECT t1.room_number AS room_number, t1.roommate1, t1.roommate2, t3_1.housing_points AS 'roommate1_housing', t3_2.housing_points AS 'roommate2_housing' FROM $rosterTable t1 INNER JOIN $membersTable t3_1 ON t1.roommate1 = t3_1.username INNER JOIN $membersTable t3_2 ON t1.roommate2 = t3_2.username WHERE t1.year = 'current'";
+$query = "SELECT t1.room_number AS room_number, t1.year, t1.roommate1, t1.roommate2, t3_1.housing_points AS 'roommate1_housing', t3_2.housing_points AS 'roommate2_housing' FROM $rosterTable t1 LEFT JOIN $membersTable t3_1 ON t1.roommate1 = t3_1.username LEFT JOIN $membersTable t3_2 ON t1.roommate2 = t3_2.username ORDER BY t1.room_number DESC";
 
 
 if(!$result = $db->query($query)){
@@ -23,6 +23,7 @@ $arr = array();
 if($result->num_rows > 0) {
 	while($row = $result->fetch_assoc()) {
         $temp = array();
+        $temp['year'] = $row['year'];
         $temp['room_number'] = $row['room_number'];
         $temp['roommate1'] = $row['roommate1'];
         $temp['roommate2'] = $row['roommate2'];
