@@ -109,3 +109,33 @@ body {
 [ng\:cloak], [ng-cloak], [data-ng-cloak], [x-ng-cloak], .ng-cloak, .x-ng-cloak {
   display: none !important;
 }
+
+.button-panel-title {
+    line-height: 34px;
+}
+
+.room-select-btn {
+    width:70px;
+}
+
+
+
+
+
+
+
+.on-floor-search-input {
+    font-size:15px;
+    width:180px;
+    padding:5px;
+    height:30px;
+}
+
+.on-floor-search-btn {
+    padding:4px 10px;
+    font-size:15px;
+    position:relative;
+    top:-6px;
+    right:-10px;
+    
+}
