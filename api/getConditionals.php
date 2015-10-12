@@ -9,12 +9,11 @@ $db = new mysqli($host, $dbusername, $dbpassword, $dbname) or die("Connection Er
 
 if (isset($_GET['user'])) {
     $username = $db->real_escape_string($_GET['user']);
+    $query = "SELECT * FROM $conditionalTable WHERE username='$username'";
 }else{
-    // Error - No ID given
-    die("No Username Provided as URL Parameter.");
+    $query = "SELECT * FROM $conditionalTable";
+   
 }
-
-$query = "SELECT * FROM $conditionalTable WHERE username='$username'";
 
 if(!$result = $db->query($query)){
         die("RESULT ERROR: " . $db->error.__LINE__);
