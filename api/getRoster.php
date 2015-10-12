@@ -26,8 +26,8 @@ if($result->num_rows > 0) {
         $temp['room_number'] = $row['room_number'];
         $temp['roommate1'] = $row['roommate1'];
         $temp['roommate2'] = $row['roommate2'];
-        $temp['roommate1_housing'] = (int) $row['roommate1_housing'];
-        $temp['roommate2_housing'] = (int) $row['roommate2_housing'];
+        $temp['roommate1_housing_points'] = (int) $row['roommate1_housing'];
+        $temp['roommate2_housing_points'] = (int) $row['roommate2_housing'];
         $temp['total_housing_points'] = $temp['roommate1_housing_points'] + $temp['roommate2_housing_points'];
 		$arr[] = $temp;
 	}
