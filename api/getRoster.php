@@ -25,8 +25,16 @@ if($result->num_rows > 0) {
         $temp = array();
         $temp['year'] = $row['year'];
         $temp['room_number'] = $row['room_number'];
-        $temp['roommate1'] = $row['roommate1'];
-        $temp['roommate2'] = $row['roommate2'];
+        if ($row['roommate1'] == "") {
+            $temp['roommate1'] = "EMPTY";
+        } else {
+            $temp['roommate1'] = $row['roommate1'];
+        }
+        if ($row['roommate2'] == "") {
+            $temp['roommate2'] = "EMPTY";
+        } else {
+            $temp['roommate2'] = $row['roommate2'];
+        }
         $temp['roommate1_housing_points'] = (int) $row['roommate1_housing'];
         $temp['roommate2_housing_points'] = (int) $row['roommate2_housing'];
         $temp['total_housing_points'] = $temp['roommate1_housing_points'] + $temp['roommate2_housing_points'];
