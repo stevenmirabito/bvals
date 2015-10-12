@@ -15,7 +15,7 @@
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span class="glyphicon glyphicon-copy"></span> Submit Forms <span class="caret"></span></a>
                     <ul class="dropdown-menu">
                         <li><a href="major_project_submission.php"><span class="glyphicon glyphicon-blackboard"></span> Major Project Form</a></li>
-                        <li><a href="#"><span class="glyphicon glyphicon-stats"></span> Evaluation Forms</a></li>
+                        <li><a href="evals_submission.php"><span class="glyphicon glyphicon-stats"></span> Freshman Evaluations Form</a></li>
                     </ul>
                 </li>
                 <li class="dropdown">
