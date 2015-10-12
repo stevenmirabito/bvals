@@ -48,7 +48,12 @@
                 $http.get(apiUrl + "getRoom.php?user=" + username).success(ajaxSuccess(pass, fail)).error(ajaxError);
             },
             getMajorProjects: function (username, pass, fail) {
-                $http.get(apiUrl + "getMajorProjects.php?user=" + username).success(ajaxSuccess(pass, fail)).error(ajaxError);
+                if(username != "") {
+                    $http.get(apiUrl + "getMajorProjects.php?user=" + username).success(ajaxSuccess(pass, fail)).error(ajaxError);
+                }
+                else {
+                    $http.get(apiUrl + "getMajorProjects.php").success(ajaxSuccess(pass, fail)).error(ajaxError);
+                }
             },
             getSpringEvals: function (username, pass, fail) {
                 $http.get(apiUrl + "getSpringEvals.php?user=" + username).success(ajaxSuccess(pass, fail)).error(ajaxError);
@@ -330,12 +335,15 @@
     app.directive('majorProjectsWidget', function(){
         return {
             restrict: 'E',
+            scope: {
+                all: '='
+            },
             templateUrl: 'directives/major_projects_widget.html',
             controller: ["$scope", "EvalsAPI", function($scope, EvalsAPI){
                 var ProjectsCtrl = this;
 
                 EvalsAPI.getMajorProjects(
-                    webauthUser,
+                    ($scope.all ? "" : webauthUser),
                     function(data){
                         
                         ProjectsCtrl.data = data;
