@@ -36,13 +36,10 @@ $arr['on_floor'] = (int) $arr['on_floor'];
 $arr['voting'] = (int) $arr['voting'];
 $arr['active'] = (int) $arr['active'];
 
-
 # JSON-encode the response
 $json_response = json_encode($arr);
 
 // # Return the response
 echo $json_response;
 
-
 ?>
-

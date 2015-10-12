@@ -1,11 +1,9 @@
 <?php
-
-$host = "localhost";
-	$dbname = "getctxtm_evals"; //click Servers
-	
-    $dbusername = "getctxtm_brandon"; //click Servers
-	
-    $dbpassword = "900319319";
+//Enter in your server variables and then rename this file as db.php
+    $host = "localhost";
+    $dbname = ""; 
+    $dbusername = ""; 
+    $dbpassword = "";
     $membersTable = "members";
     $queueTable = "queue";
     $rosterTable = "roster";
@@ -16,7 +14,6 @@ $host = "localhost";
     $conditionalTable = "conditionals";
     $attendanceTable = "attendance";
     $committeesTable = "committees";
-    
     $roomCurrent = "current";
     $roomNext = "next";
 ?>
