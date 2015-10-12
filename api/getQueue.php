@@ -9,8 +9,6 @@ include 'db.php';
 
 $db = new mysqli($host, $dbusername, $dbpassword, $dbname) or die("Connection Error: " . mysqli_error($db));
 
-
-
 $query = "SELECT * FROM $queueTable";
 
 if(!$result = $db->query($query)){
@@ -35,18 +33,12 @@ if($result->num_rows > 0) {
             
             while($cRow = $cResult->fetch_assoc()) {                
                 
-             $tempRow['housingPoints'] = $cRow['housing_points'] ;
-             
-                          
+             $tempRow['housingPoints'] = $cRow['housing_points'] ;                
                 
         }
             
         }
-        
-        
-        
-        
-        
+
 		$arr[] = $tempRow;	
 	}
 }
@@ -57,6 +49,4 @@ $json_response = json_encode($arr);
 // # Return the response
 echo $json_response;
 
-
 ?>
-

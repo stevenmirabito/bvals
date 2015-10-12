@@ -66,10 +66,6 @@ if($result->num_rows > 0) {
              $tempRow['house_meetings_comments'] = $commentsArr;
         }
         
-        
-        
-        
-        
 		$arr = $tempRow;	
 	}
 }
@@ -78,7 +74,5 @@ $json_response = json_encode($arr);
 
 // # Return the response
 echo $json_response;
-
-
 
 ?>

@@ -11,13 +11,9 @@ if (isset($_GET['user'])) {
     die("No Username Provided as URL Parameter.");
 }
 
-
 $cQuery = "SELECT * FROM $rosterTable WHERE year='$roomCurrent' AND (roommate1='$username' OR roommate2='$username')";
 
 $nQuery = "SELECT * FROM $rosterTable WHERE year='$roomNext' AND (roommate1='$username' OR roommate2='$username')";
-
-
-
 
 if(!$cResult = $db->query($cQuery)){
         die("RESULT ERROR: " . $db->error.__LINE__);
@@ -49,14 +45,10 @@ else{
     
 }
 
-
-
 # JSON-encode the response
 $json_response = json_encode($arr);
 
 // # Return the response
 echo $json_response;
-
-
 
 ?>

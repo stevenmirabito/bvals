@@ -43,5 +43,4 @@ $json_response = json_encode($userPos);
 // # Return the response
 echo $json_response;
 
-
 ?>

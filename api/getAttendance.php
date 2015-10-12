@@ -41,9 +41,7 @@ if($result->num_rows > 0) {
             while($cRow = $cResult->fetch_assoc()) {                
                 
              $tempRow['committee_name'] = $cRow['committee_name'] ;
-             
-                          
-                
+                  
         }
             
         }

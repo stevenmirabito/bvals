@@ -12,8 +12,6 @@
 // - Result (spring_evals) +
 // AND MORE!
 
-
-
 include 'db.php';
 
 $db = new mysqli($host, $dbusername, $dbpassword, $dbname) or die("Connection Error: " . mysqli_error($db));
@@ -27,7 +25,6 @@ if (isset($_GET['user'])) {
 
 $query = "SELECT * FROM $springEvalsTable WHERE username='$username'";
 
-
 if(!$result = $db->query($query)){
         die("RESULT ERROR 1: " . $db->error.__LINE__);
     }
@@ -37,7 +34,6 @@ if($result->num_rows > 0) {
 	while($row = $result->fetch_assoc()) {
         $tempRow = $row;
       
-        
         //Get House Meetings
         $houseMeetingQuery = "SELECT * FROM $houseMeetingsTable WHERE username='$username' ";
         if(!$houseMeetingsResult = $db->query($houseMeetingQuery)){
@@ -54,13 +50,11 @@ if($result->num_rows > 0) {
                 array_push($dateArr, $hmRow['date']);
                 array_push($presentArr, $hmRow['present']);
                 array_push($excusedArr, $hmRow['excused']);
-                array_push($commentsArr, $hmRow['comments']); 
-                
+                array_push($commentsArr, $hmRow['comments']);   
                 
                 // Get Major Project Info
                 $tempRow2 = $tempRow;
       
-        
         //Get Major Project Info
         $mpQuery = "SELECT * FROM $majorProjectsTable WHERE username='$username'";
         if(!$mpResult = $db->query($mpQuery)){
@@ -75,10 +69,8 @@ if($result->num_rows > 0) {
                 $tempRow2['major_project_description'] = $mpRow['project_description'];
                 $tempRow2['major_project_status'] = $mpRow['status'];
                 
-                
                 //Get Committee Info
                 $tempRow3 = $tempRow2;
-                    
                     
                 $memberQuery = "SELECT * FROM $membersTable WHERE username='$username'";
         if(!$memResult = $db->query($memberQuery)){
@@ -89,35 +81,15 @@ if($result->num_rows > 0) {
                 
                 $tempRow3['committee_mtgs'] = $memRow['committee_mtgs'];
                 
-                
             }
-        }
-                
-                
+        }                
                 //End Get Committee Info
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
+   
         }
         }   
                 
                 //End Get Major Project Info
-                
-                
-                
-                
-                
-                
-                
+    
         }
             
             $tempRow3['house_meeting_date'] = $dateArr;
@@ -125,11 +97,7 @@ if($result->num_rows > 0) {
             $tempRow3['house_meeting_excused'] = $excusedArr;
             $tempRow3['house_meeting_comments'] = $commentsArr;
         }
-        
-        
-        
-        
-        
+
 		$arr = $tempRow3;	
 	}
 }
@@ -139,6 +107,4 @@ $json_response = json_encode($arr);
 // # Return the response
 echo $json_response;
 
-
 ?>
-
