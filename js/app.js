@@ -12,7 +12,7 @@
     // EvalsAPI - service for making Ajax requests to the EvalsAPI
     app.factory("EvalsAPI", ["$http", function($http){
         // API base URL
-        var apiUrl = "https://get-click.com/bvals/api/";
+        var apiUrl = "https://www.csh.rit.edu/~henry/bvals/api/";
 
         // ajaxSuccess() - fires appropriate AJAX callback based on response status
         var ajaxSuccess = function (cbPass, cbFail) {
