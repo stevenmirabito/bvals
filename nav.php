@@ -22,7 +22,6 @@
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span class="glyphicon glyphicon-stats"></span> Evaluation Results <span class="caret"></span></a>
                     <ul class="dropdown-menu">
                         <li><a href="#"><span class="glyphicon glyphicon-star"></span> Freshman Evaluations</a></li>
-                        <li><a href="#"><span class="glyphicon glyphicon-tree-conifer"></span> Winter Evaluations</a></li>
                         <li><a href="#"><span class="glyphicon glyphicon-tree-deciduous"></span> Spring Evaluations</a></li>
                     </ul>
                 </li>
