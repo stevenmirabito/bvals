@@ -147,38 +147,20 @@
                 function(data){
                     console.log(data);                
                     $scope.data = data;
-                    $scope.roomFilterValue = 0;
+                    $scope.roomFilter = 0;
+                    $scope.activeYearValue = 'current';
+                    $scope.activeRoomValue = 0;
                     $scope.yearFilter = {year:'current'};
-                   
-                    
-                    //FIX updateFilter - does not work rn
-                    
-                    
-                    $scope.updateFilter = function(val){
-                         //debug
-                
-                
-                    if(val == 'empty'){
-                        $scope.roomFilterValue = 1;
-                        
-                    }
-                    else{
-                         $scope.roomFilterValue = 0;
-                    }
-                    
-                
-                        
-                    }
-                    
-                    $scope.roomFilter = function (item) {
-                        if($scope.roomFilterValue == 1){
-                            return item.roommate1 === 'EMPTY' || item.roommate2 === 'EMPTY';
+                    $scope.roomFilterController = function (item) { 
+                        if($scope.roomFilter == 1){
+                            return item.roommate1 == "EMPTY" || item.roommate2 == "EMPTY"; 
                         }
                         else{
-                            return item.roommate1 !== '' || item.roommate2 !== '';  
+                        return true;
                         }
-     
+    
 };
+     
                 },
                 false
                 );

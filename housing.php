@@ -95,7 +95,7 @@ include('nav.php');
                 </div>
             </div>
             <div class="row">
-                <div class="col-xs-12 col-sm-12 col-md-12">                         <div class="panel panel-default">
+                <div class="col-xs-12 col-sm-12 col-md-12" ng-controller="HousingRosterController">                         <div class="panel panel-default">
                         <div class="panel-heading">
                             <h3 class="panel-title button-panel-title">
                                 Rooms
@@ -106,17 +106,17 @@ include('nav.php');
   </button>
   <ul class="dropdown-menu">
     <li class="dropdown-header">Year</li>
-    <li><a ng-click="yearFilter={year:current}">Current</a></li>
-    <li><a ng-click="yearFilter={year:next}">Next</a></li>
+    <li ng-class="{active : activeYearValue === 'current'}"><a ng-click="yearFilter = {year:'current'}; activeYearValue = 'current'">Current</a></li>
+    <li ng-class="{active : activeYearValue === 'next'}"><a ng-click="yearFilter = {year:'next'}; activeYearValue = 'next'">Next</a></li>
     <li class="dropdown-header">Room Type</li>
-    <li><a ng-click="updateFilter(all)">All</a></li>
-    <li><a ng-click="updateFilter(empty)">Empty</a></li>
+    <li ng-class="{active : activeRoomValue === 0}"><a ng-click="roomFilter = 0; activeRoomValue = 0">All</a></li>
+    <li ng-class="{active : activeRoomValue === 1}"><a ng-click="roomFilter = 1; activeRoomValue = 1">Empty</a></li>
   </ul>
 </div>
                             
                             </h3>
                         </div>
-                        <div class="panel-body table-fill" ng-controller="HousingRosterController">
+                        <div class="panel-body table-fill" >
                             <div class="table-responsive">
                             <table class="table table-striped no-bottom-margin">
                                 
@@ -131,7 +131,7 @@ include('nav.php');
                                     </tr>
                                    
                                     <!-- FIX UPDATE FILTER CALL -->
-                                    <tr dir-paginate="room in (data | orderBy: '+room_number' | filter:yearFilter | filter:roomFilter) | itemsPerPage: 10" pagination-id="roster" ng-cloak>
+                                    <tr dir-paginate="room in (data | orderBy: '+room_number' | filter:yearFilter | filter:roomFilterController) | itemsPerPage: 10" pagination-id="roster" ng-cloak>
                                         <td>{{room.room_number}}</td>
                                         <td>{{room.total_housing_points}}</td>
                                         <td>{{room.roommate1}}</td>
