@@ -30,6 +30,5 @@ include('nav.php');
 <script src="js/plugins/salvattore.min.js"></script>
 <script src="js/plugins/dirPagination.js"></script>
 <script src="js/app.js"></script>
-<script>alert('worr was here');</script>
 </body>
 </html>
