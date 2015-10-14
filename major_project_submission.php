@@ -65,5 +65,6 @@ include('nav.php');
 <script src="js/plugins/salvattore.min.js"></script>
 <script src="js/plugins/dirPagination.js"></script>
 <script src="js/app.js"></script>
+<script src="js/plugins/alertify.min.js"></script>
 </body>
 </html>
