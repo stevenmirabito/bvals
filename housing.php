@@ -18,8 +18,9 @@ include('nav.php');
 ?>
 
 <div class="container main">
-    <div class="panel panel-default">
-        <div class="panel-body">
+    
+        <h4 class="mobile-text-center">Housing</h4>
+            <hr>
             <div class="row">
                 <div class="col-xs-12 col-sm-6 col-md-6">                       <div class="panel panel-default">
                     <div class="panel-heading">
@@ -149,8 +150,8 @@ include('nav.php');
                 </div>
             
             </div>
-        </div>
-    </div>    
+        
+       
     
 </div>
 

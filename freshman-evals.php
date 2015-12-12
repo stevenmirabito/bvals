@@ -18,8 +18,9 @@ include('nav.php');
 ?>
 
 <div class="container main" ng-controller="EvaluationResultsController as evalResults" ng-init="type='freshman'">
-    <div class="panel panel-default">
-        <div class="panel-body">
+    
+        <h4 class="mobile-text-center">Freshman Evaluations</h4>
+            <hr>
             <table class="table table-striped table-responsive">
                 <tbody>
                 <tr>
@@ -88,8 +89,8 @@ include('nav.php');
                 </tr>
                 </tbody>
             </table>
-        </div>
-    </div>
+        
+    
 </div>
 
 <script src="js/libraries/jquery.min.js"></script>

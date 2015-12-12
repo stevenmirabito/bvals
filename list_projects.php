@@ -18,7 +18,8 @@ include('nav.php');
 ?>
 
 <div class="container main">
-   
+            <h4 class="mobile-text-center">Major Projects</h4>
+            <hr>
             <major-projects-widget all="true"></major-projects-widget>
         
     

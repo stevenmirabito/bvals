@@ -14,28 +14,29 @@
 <body ng-controller="MemberInfoController as member">
 
 <?php
-include('nav.php');
+    include('nav.php');
 ?>
 
 <div class="container main">
-    <div class="panel panel-default">
-        <div class="panel-body">
-            <div class="page-header row">
-                <div class="col-md-2 profile-col-fix">
+    
+        
+            <div class="row">
+                <div class="col-md-2 col-sm-3 col-xs-12">
                     <img class="thumbnail profile-image" ng-src="https://profiles.csh.rit.edu/image/{{member.data.username}}">
                 </div>
-                <div class="col-md-10">
-                    <h1 ng-cloak>{{member.data.username}}</h1>
-                    <span class="profile-badges" ng-cloak>
+                <div class=" col-xs-12 col-sm-9 col-md-10" >
+                    <h1 class="username" ng-cloak>{{member.data.username}}</h1>
+                    <div class="profile-badges" ng-cloak>
                         <span class="label label-success" ng-show="member.data.active">Active</span>
                         <span class="label label-danger" ng-hide="member.data.active">Inactive</span>
                         <span class="label label-primary" ng-show="member.data.on_floor">On-floor</span>
                         <span class="label label-default" ng-hide="member.data.on_floor">Off-floor</span>
                         <span class="label label-primary" ng-show="member.data.voting">Voting</span>
                         <span class="label label-default" ng-hide="member.data.voting">Non-Voting</span>
-                    </span>
+                    </div>
                 </div>
             </div>
+    <hr>
             <div id="grid" data-columns>
                 <housing-widget></housing-widget>
                 <evaluations-widget></evaluations-widget>
@@ -43,8 +44,8 @@ include('nav.php');
                 <major-projects-widget></major-projects-widget>
                 <attendance-widget></attendance-widget>
             </div>
-        </div>
-    </div>
+        
+    
 </div>
 
 <script src="js/libraries/jquery.min.js"></script>
